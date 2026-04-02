@@ -15,8 +15,6 @@ typedef struct okml {
 
 okml parsed_data;
 
-
-
 bool find_key_value(char* line){
   int len = strlen(line);
   char* ss = malloc(sizeof(char) * len);
@@ -24,13 +22,24 @@ bool find_key_value(char* line){
   char* value = malloc(sizeof(char) * len);
   for (int i = 0; i < len; ++i) {
     if(line[i] == ':'){
-      /* printf("%s = ", strncpy(ss, line, i) ); */
-      /* printf("%s\n", strncpy(ss, line+i+1, len)); */
-      parse_line(&parsed_data, line);
+      strncpy(ss, line, i);
+      char* key = (strdup(ss));
+
+      remove_whitespace(key);
+      parsed_data.key = key;
+
+      parse_line(&parsed_data,strncpy(ss, line+i+1, len));
       parsed_data.size++;
-      printf("-> %s \n" , parsed_data.val_string);
+      
+      printf("%s -> ", parsed_data.key );
+      if(parsed_data.val_string != NULL){
+	printf("%s\n" , parsed_data.val_string);	
+      } else {
+	printf("%b\n", parsed_data.val_bool );
+      }
     }
   }
+
 }
 
 void parse(char* filename){
@@ -47,6 +56,8 @@ void parse(char* filename){
     else {
         fprintf(stderr, "Unable to open file!\n");
     }
+    printf("size -> %d\n",parsed_data.size );
+
 }
 
 int main(int argc, char *argv[])

@@ -13,6 +13,20 @@ typedef struct okml {
   struct okml* sub_list;
 } okml;
 
+void remove_whitespace(char *str) {
+    char *read = str;
+    char *write = str;
+    
+    while (*read) {
+        if (!isspace((unsigned char)*read)) {
+            *write = *read;
+            write++;
+        }
+        read++;
+    }
+    *write = '\0';
+}
+
 void parse_line(okml* node, const char* line) {
     if (node == NULL || line == NULL) return;
     
@@ -76,6 +90,7 @@ void parse_line(okml* node, const char* line) {
     }
     
     // Default: treat as string
+
     node->val_string = trimmed; // trimmed will be freed elsewhere
     node->val_int = 0;
     node->val_bool = false;

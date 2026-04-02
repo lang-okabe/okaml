@@ -5,7 +5,7 @@ somelist {
 	pair: true
 	sub_lists { 
 		sub_sublists {
-		isSubSub: true
+		isSubSub: yes
 		foo: false
 		bar: 123
 		baz: 1204
