@@ -13,11 +13,5 @@ somelist {
 	}
 }
 
-multi_line: ``` Hello
-World
-This
-is
-a multiline ```
-
 isBad  : false
 isNull : null

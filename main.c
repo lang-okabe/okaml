@@ -33,13 +33,12 @@ bool find_key_value(char* line){
       
       printf("%s -> ", parsed_data.key );
       if(parsed_data.val_string != NULL){
-	printf("%s\n" , parsed_data.val_string);	
+	printf("%s\n", parsed_data.val_string);
       } else {
 	printf("%b\n", parsed_data.val_bool );
       }
     }
   }
-
 }
 
 void parse(char* filename){
@@ -52,17 +51,18 @@ void parse(char* filename){
 
         }
         fclose(file);
+    printf("size -> %d\n",parsed_data.size );
     }
     else {
         fprintf(stderr, "Unable to open file!\n");
     }
-    printf("size -> %d\n",parsed_data.size );
 
 }
 
 int main(int argc, char *argv[])
 {
-  parse("syntax.okml");
+
+  parse("syntax2.okml");
   return 0;
 }
 
