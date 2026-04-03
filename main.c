@@ -3,17 +3,7 @@
 #include <stdlib.h> 
 #include "typecheck.c"
 #include "helpers.c"
-
-typedef struct okml {
-  char* key;
-  char* type;
-  
-  char* val_string;
-  int val_int;
-  bool val_bool;
-  
-  struct okml* children;
-} okml;
+#include "okml.h"
 
 okml pair;
 
@@ -23,6 +13,7 @@ void parse(char* filename){
   if (file != NULL) {
         while (fgets(line, sizeof(line), file)) {
 	  find_key_value(line,pair);
+
         }
         fclose(file);
     }
@@ -31,10 +22,13 @@ void parse(char* filename){
     }
 }
 
-int main()
+int main(int argc, char *argv[])
 {
 
-  parse("syntax.okml");
+  if(argc > 1){
+    printf("file name -> %s\n", argv[1]);
+  }
+  parse(argv[1]);
   return 0;
 }
 

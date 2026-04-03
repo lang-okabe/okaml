@@ -5,12 +5,14 @@
 
 
 bool find_key_value(char* line, okml parsed_data){
+
+  bool found = false;
   int len = strlen(line);
   char* ss = malloc(sizeof(char) * len);
-  /* char* key = malloc(sizeof(char) * len); */
-  /* char* value = malloc(sizeof(char) * len); */
+
   for (int i = 0; i < len; ++i) {
     if(line[i] == ':'){
+      found = true;
       strncpy(ss, line, i);
       char* key = (strdup(ss));
 
@@ -28,4 +30,5 @@ bool find_key_value(char* line, okml parsed_data){
       printf(" || Type -> %s\n", parsed_data.type);
     }
   }
+  return found;
 }
