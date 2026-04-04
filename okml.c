@@ -66,22 +66,8 @@ void okml_free_node(okml* node) {
     free(node->key);
     free(node->type);
     free(node->val_string);
-    
-    // Free children
-    for (size_t i = 0; i < node->children_count; i++) {
-        okml_free_node(node->child[i]);
-    }
-    free(node->child);
+    /* free(node->child_list); */
     
     free(node);
 }
 
-void okml_add_child(okml* parent, okml* child) {
-    if (!parent || !child) return;
-    
-    if (parent->children_count >= parent->children_capacity) {
-        parent->children_capacity = parent->children_capacity == 0 ? 4 : parent->children_capacity * 2;
-        parent->child = (okml**)realloc(parent->child, sizeof(okml*) * parent->children_capacity);
-    }
-    parent->child[parent->children_count++] = child;
-}

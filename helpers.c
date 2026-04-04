@@ -95,8 +95,11 @@ void parse_line(okml* node, const char* line) {
 
 
 bool has_char(char* line, char delim) {
+  if(delim == '`') return strstr(line, "```") != NULL;
   return strchr(line, delim) != NULL;
 }
+
+
 
 char* get_name(const char* str, const char* delim) {
     char* copy = strdup(str);           // Copy to modifiable memory

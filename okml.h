@@ -6,6 +6,17 @@
 #include <stdbool.h>
 #include <stdio.h>
 
+typedef struct okml okml;
+
+
+// Dynamic array of okml pointers
+typedef struct {
+    struct okml** items;
+    size_t count;
+    size_t capacity;
+} okml_array;
+
+
 typedef struct okml {
     char* key;
     char* type;
@@ -13,18 +24,8 @@ typedef struct okml {
     char* val_string;
     int val_int;
     bool val_bool;
-    
-    struct okml** child;
-    size_t children_count;
-    size_t children_capacity;
+    okml_array* child_list;
 } okml;
-
-// Dynamic array of okml pointers
-typedef struct {
-    okml** items;
-    size_t count;
-    size_t capacity;
-} okml_array;
 
 // Function declarations (only prototypes)
 okml_array* okml_array_create(void);

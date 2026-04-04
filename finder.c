@@ -6,11 +6,13 @@
 #include "okml.h"
 
 bool find_key_value(char* line, okml_array* arr){
-  okml* parsed_data = okml_create_node();
     
   bool found = false;
   int len = strlen(line);
   char* ss = malloc(sizeof(char) * len);
+
+  okml* parsed_data = okml_create_node();
+
 
   for (int i = 0; i < len; ++i) {
     if(line[i] == ':'){
@@ -23,13 +25,21 @@ bool find_key_value(char* line, okml_array* arr){
 
       parse_line(parsed_data,strncpy(ss, line+i+1, len));
       
+
+      /* PRINTS THE SET DATA */
+
       printf("%s -> ", parsed_data->key );
+
+      
       if(parsed_data->val_string != NULL){
 	printf("%s", parsed_data->val_string);
       } else {
 	printf("%s", parsed_data->val_bool ? "true" : "false");
       }
       printf(" || Type -> %s\n", parsed_data->type);
+
+      /* ENDS PRINTING CAN BE REMOVED */
+
     }
   }
 
@@ -39,8 +49,14 @@ bool find_key_value(char* line, okml_array* arr){
 
 FILE* find_child(FILE* file, okml_array* root, char* key) {
   char line[256];
+
   okml_array* child_list = okml_array_create();
-  printf("[SUBLIST ENT] - %s \n", key);
+  okml* parsed_data = okml_create_node();
+  parsed_data->child_list=child_list;
+  parsed_data->key=key;
+  okml_array_push(root, parsed_data);
+  
+  printf("[SUBLIST ENT] - %s \n", parsed_data->key);
   /* Read the File line by line */
   while (fgets(line, sizeof(line), file)) {
     line[strcspn(line, "\n")] = '\0';
@@ -59,7 +75,7 @@ FILE* find_child(FILE* file, okml_array* root, char* key) {
     }
 
     /* Send the line to find the key-value pair */
-    find_key_value(line, root);
+    find_key_value(line, child_list);
   
   }
 
