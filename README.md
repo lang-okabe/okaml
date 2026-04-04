@@ -7,9 +7,9 @@ and such is OKAML has born, you can look at the (syntax.okml)[syntax.okml] file 
 LLM Disclaimer: LLM Generated Code was used in the project, but only for helper functions -> (helpers.c)[helpers.c]
 
 ROADMAP:  
-[] Parsing Multi-Line Strings
-[] Porting this multiple languages
-[] Pre-processing to make sure it's in format
-[] PR for this ngl
+[] Parsing Multi-Line Strings  
+[] Porting this multiple languages  
+[] Pre-processing to make sure it's in format  
+[] PR for this ngl  
 
 
