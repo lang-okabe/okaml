@@ -13,6 +13,16 @@ somelist {
 	}
 }
 
+foolist{
+	bar{
+		baz: bar
+	}
+
+	boo{
+		boora
+		}
+}
+
 multi_line: ```
 this
 is

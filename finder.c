@@ -25,21 +25,6 @@ bool find_key_value(char* line, okml_array* arr){
 
       parse_line(parsed_data,strncpy(ss, line+i+1, len));
       
-
-      /* PRINTS THE SET DATA */
-
-      printf("%s -> ", parsed_data->key );
-
-      
-      if(parsed_data->val_string != NULL){
-	printf("%s", parsed_data->val_string);
-      } else {
-	printf("%s", parsed_data->val_bool ? "true" : "false");
-      }
-      printf(" || Type -> %s\n", parsed_data->type);
-
-      /* ENDS PRINTING CAN BE REMOVED */
-
     }
   }
 
@@ -54,9 +39,9 @@ FILE* find_child(FILE* file, okml_array* root, char* key) {
   okml* parsed_data = okml_create_node();
   parsed_data->child_list=child_list;
   parsed_data->key=key;
+  parsed_data->type="list";
   okml_array_push(root, parsed_data);
   
-  printf("[SUBLIST ENT] - %s \n", parsed_data->key);
   /* Read the File line by line */
   while (fgets(line, sizeof(line), file)) {
     line[strcspn(line, "\n")] = '\0';
@@ -65,12 +50,11 @@ FILE* find_child(FILE* file, okml_array* root, char* key) {
     if (has_char(line, '{')) {
       char* sub_key = get_name(line, "{");
       remove_whitespace(sub_key);
-      find_child(file, root, sub_key);
+      find_child(file, parsed_data->child_list, sub_key);
     }
 
     /* EXIT IF NEST END */
     if (has_char(line, '}')) {
-      printf("[SUBLIST END] - %s\n", key);
       return file;
     }
 
@@ -79,7 +63,6 @@ FILE* find_child(FILE* file, okml_array* root, char* key) {
   
   }
 
-  printf("[SUBLIST END] - %s\n", key);  
   return file;
 }
 

@@ -6,6 +6,28 @@
 #include "okml.h"
 
 
+void print_tree(okml_array* arr, int x){
+  int N = arr->capacity;
+  for (int i = 0; i < N; ++i) {
+    okml* cur = arr->items[i];
+    if(cur == NULL){
+      return;
+    }
+
+    if(cur->key == NULL){
+      return;
+    }
+    for(int i =0; i<=x;i++){
+      printf("\t");
+    }
+    printf("key %s | type %s\n", cur->key, cur->type);
+    if(cur->type == "list"){
+      print_tree(cur->child_list, x+1);
+    }
+  }
+  printf("\n");
+}
+
 void parse(char* filename){
   okml_array* arr = okml_array_create();
   FILE* file = fopen(filename, "r");
@@ -28,7 +50,7 @@ void parse(char* filename){
   else {
       fprintf(stderr, "Unable to open file!\n");
     }
-
+  print_tree(arr,0);
 }
 
 int main(int argc, char *argv[])
@@ -41,4 +63,5 @@ int main(int argc, char *argv[])
   parse(argv[1]);
   return 0;
 }
+
 
