@@ -92,3 +92,19 @@ void parse_line(okml* node, const char* line) {
     node->val_bool = false;
     node->type="string";
 }
+
+
+bool has_char(char* line, char delim) {
+  return strchr(line, delim) != NULL;
+}
+
+char* get_name(const char* str, const char* delim) {
+    char* copy = strdup(str);           // Copy to modifiable memory
+    if (!copy) return NULL;
+    
+    char* token = strtok(copy, delim);  // Get first token
+    char* result = token ? strdup(token) : NULL;  // Duplicate token
+    
+    free(copy);  // Free the copy
+    return result;  // Return the token (caller must free)
+}

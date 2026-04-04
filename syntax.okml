@@ -1,8 +1,8 @@
 name: okaml
 
 somelist {
-	key: value
-	pair: true
+	has_key: true
+	this_has: astringvalue
 	sub_lists { 
 		sub_sublists {
 		isSubSub: yes

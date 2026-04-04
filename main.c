@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h> 
-#include "typecheck.c"
+#include "helpers.c"
 #include "finder.c"
 #include "okml.h"
 
@@ -17,7 +17,7 @@ void parse(char* filename){
 	    find_key_value(line,arr);
 	  }
 	  if(has_char(line, '{')){
-	    /* find_child(file,&pair); */
+	    find_child(file,arr, "key");
 	  }
         }
         fclose(file);

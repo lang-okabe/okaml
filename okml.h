@@ -39,4 +39,9 @@ okml* okml_create_node(void);
 void okml_free_node(okml* node);
 void okml_add_child(okml* parent, okml* child);
 
+// Forward Declarations for typecheck.c
+
+void remove_whitespace(char *str);
+void parse_line(okml* node, const char* line);
+
 #endif // OKML_H
