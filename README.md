@@ -4,7 +4,7 @@ okaml is a language a markup language i made out of frustration of using json an
 
 and such is OKAML has born, you can look at the [syntax.okml](syntax.okml) file to go through how the language is written, and this is basic parser which prints to stdout  
 
-LLM Disclaimer: LLM Generated Code was used in the project, but only for helper functions -> [helpers.c](helpers.c)
+LLM Disclaimer: LLM Generated Code was used in the project, but only for a couple helper functions -> [helpers.c](helpers.c)
 
 ROADMAP:  
 [] Parsing Multi-Line Strings  
