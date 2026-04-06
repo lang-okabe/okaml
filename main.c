@@ -66,7 +66,7 @@ int main(int argc, char *argv[])
   } 
 
   okml_array* okml = okml_load(argv[1]);
-  char* rc = okml_find(okml, "bruschetta");
+  char* rc = okml_find(okml, "isSubSub");
   printf("[RETURN] %s\n",rc );
   return 0;
 }
