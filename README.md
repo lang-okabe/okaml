@@ -2,6 +2,8 @@
 
 OKAbe's Markup Language (or okaml for short) is a markup language. I made purely out of spite for markup languages that are indentation based.  
 
+**It is a single Header Library** as god intended  
+
 Here's a example of a syntax.
 
 ```okaml
@@ -36,7 +38,7 @@ This repo has a basic c parser to install it.
 ```bash
 git clone https://github.com/lang-okabe/okaml
 cd okaml
-gcc -o okaml main.c okaml.c
+gcc -o example example.c
 ./okaml [okaml file]
 ```
 
